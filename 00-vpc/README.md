@@ -1,0 +1,2 @@
+# VPC Module user
+The module user passes the required input variables to the VPC module. The module then creates the VPC and returns the outputs. The user captures these outputs (for example, vpc_id) and stores them in AWS SSM Parameter Store. Once the outputs are stored, the module user's work is complete.
