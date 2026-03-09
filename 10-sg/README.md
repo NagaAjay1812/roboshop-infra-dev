@@ -1,0 +1,2 @@
+## SG module user
+When creating a security group, the first required input is the vpc_id because a security group must belong to a VPC. The vpc_id was already stored in SSM Parameter Store by the VPC module user. To retrieve that value in Terraform, we use a data source, which allows us to fetch existing information.
