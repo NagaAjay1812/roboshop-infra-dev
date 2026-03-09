@@ -15,3 +15,6 @@ architect       r+w+x+d
 
 humans: we are creating roles for humans
 no-humans: we are craeting roles for non-humans(ex: ec2)
+
+
+- login into bastion host clone the repo "roboshop-infra-dev" repo and cd to roboshop-infra-dev there install terraform 

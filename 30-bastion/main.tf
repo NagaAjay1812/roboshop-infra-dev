@@ -1,8 +1,8 @@
 resource "aws_instance" "bastion" {
-  ami           = local.ami_id # we paramatrized
-  instance_type = var.instance_type
-  subnet_id     = local.public_subnet_ids
-
+  ami                  = local.ami_id # we paramatrized
+  instance_type        = var.instance_type
+  subnet_id            = local.public_subnet_ids
+  iam_instance_profile = aws_iam_instance_profile.bastion.name
   # Reference the security group ID here
   vpc_security_group_ids = [local.bastion_sg_id]
 
