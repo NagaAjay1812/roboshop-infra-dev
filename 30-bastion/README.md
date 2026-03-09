@@ -1,0 +1,2 @@
+## Bastion
+we are planning to launch instances through bastion thats why we created bastion revise in ansible also we create instance from one CM ansible to another instances but there we configured here we dont need to configure because we ceaetd a role, attached permissions and create profile too 
