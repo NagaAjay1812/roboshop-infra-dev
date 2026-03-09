@@ -1,0 +1,32 @@
+bastion:
+  - name: bastion_internet # bastion accepting connection from internet
+    port: 22
+    src: internet
+    dest: bastion
+
+mongodb:
+  - name: bastion_mongodb
+    port: 22
+    src: bastion
+    dest: mongodb
+
+  - name: mongodb_catalogue # mongobd accepting connection from catalogue
+    port: 27017
+    src: catalogue
+    dest: mongodb
+
+  - name: mongodb_user # mongobd accepting connection from user
+    port: 27017
+    src: user
+    dest: mongodb
+
+Redis:
+  - name: redis_user # redis accepting connection from user
+    port: 6379
+    src: user
+    dest: redis
+
+  - name: redis_cart # redis accepting connection from cart
+    port: 6379
+    src: cart
+    dest: redis
