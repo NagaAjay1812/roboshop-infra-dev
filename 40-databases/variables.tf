@@ -18,7 +18,13 @@ variable "mongodb_tags" {
   default = {}
 }
 
+variable "zone_id" {
+  default = "Z07326442Z8C3IRLJ3030"
+}
 
+variable "domain_name" {
+  default = "cloudkarna.in"
+}
 
 
 
