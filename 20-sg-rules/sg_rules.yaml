@@ -30,3 +30,9 @@ Redis:
     port: 6379
     src: cart
     dest: redis
+
+-   name: bastion_redis
+    port: 22
+    src: bastion
+    dest: mongodb
+
