@@ -6,7 +6,7 @@ resource "aws_instance" "bastion" {
   # Reference the security group ID here
   vpc_security_group_ids = [local.bastion_sg_id]
   iam_instance_profile   = aws_iam_instance_profile.bastion.name
-  user_data              = file(bastion.sh)
+  user_data              = file("bastion.sh") # file is function it will read the content of bastion.sh and passes it to EC2
 
   root_block_device {
     volume_size = 50 # Increase the storage size from 20gb to 50gb
