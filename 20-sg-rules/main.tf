@@ -41,7 +41,6 @@ resource "aws_security_group_rule" "mongodb_user" {
   security_group_id = local.mongodb_sg_id
 }
 
-
 resource "aws_security_group_rule" "bastion_redis" {
   type      = "ingress"
   from_port = 22
