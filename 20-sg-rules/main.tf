@@ -1,3 +1,4 @@
+# bastion
 resource "aws_security_group_rule" "bastion_internet" {
   type        = "ingress"
   from_port   = 22
@@ -8,6 +9,7 @@ resource "aws_security_group_rule" "bastion_internet" {
   security_group_id = local.bastion_sg_id
 }
 
+# mongodb
 resource "aws_security_group_rule" "bastion_mongodb" {
   type      = "ingress"
   from_port = 22
@@ -41,6 +43,7 @@ resource "aws_security_group_rule" "mongodb_user" {
   security_group_id = local.mongodb_sg_id
 }
 
+#redis
 resource "aws_security_group_rule" "bastion_redis" {
   type      = "ingress"
   from_port = 22
