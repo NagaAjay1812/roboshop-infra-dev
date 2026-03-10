@@ -3,16 +3,23 @@ resource "aws_instance" "bastion" {
   instance_type = var.instance_type
   subnet_id     = local.public_subnet_ids
 
-  # Reference the security group ID here
+  # Attach bastion security group
   vpc_security_group_ids = [local.bastion_sg_id]
-  iam_instance_profile   = aws_iam_instance_profile.bastion.name
-  user_data              = file("bastion.sh") # file is function it will read the content of bastion.sh and passes it to EC2
+
+  # Attach IAM instance profile to EC2
+  iam_instance_profile = aws_iam_instance_profile.bastion.name
+
+  # Read bastion.sh file and pass it as user data
+  user_data = file("bastion.sh") # file is function it will read the content of bastion.sh and passes it to EC2
+
+  # These tags are for the EC2 instance itself
+  tags = local.bastion_final_tags
 
   root_block_device {
     volume_size = 50 # Increase the storage size from 20gb to 50gb
     volume_type = "gp3"
 
-    # Optional: Add tags to the instance for identification
+    # These tags are for the EBS root volume
     tags = local.bastion_final_tags
   }
 }
