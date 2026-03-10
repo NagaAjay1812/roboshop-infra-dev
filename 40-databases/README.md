@@ -8,8 +8,11 @@ Here we are launching MongoDB in the database subnet, so we need to fetch the da
 ## Terraform Data
 - If the instance is deleted, Terraform will not create a new resource. However, it will reconfigure the instance when we use the trigger_replace argument.
 
+# Flow:
 - The instance is launched through the bastion server.
-- We connect to the MongoDB server through the bastion server.
-- We copy the 'bootstrap.sh' file to the MongoDB server using the file provisioner.
+- We connect to the DB server through the bastion server.
+- We copy the 'bootstrap.sh' file to the DB server using the file provisioner.
 - Then we execute it using 'remote-exec' by giving execute permission to the bootstrap script and running it.
-- All these steps are executed only when the private IP address of the MongoDB server changes.
+- All these steps are executed only when the private IP address of the DB server changes.
+
+
