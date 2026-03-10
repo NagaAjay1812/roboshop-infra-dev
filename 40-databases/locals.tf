@@ -1,6 +1,7 @@
 locals {
   ami_id        = var.ami_id
   mongodb_sg_id = data.aws_ssm_parameter.mongodb_sg_id.value
+  redis_sg_id   = data.aws_ssm_parameter.redis_sg_id.value
 
   common_tags = {
     Name        = var.project
