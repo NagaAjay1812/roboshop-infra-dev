@@ -13,8 +13,8 @@ Junior devops   r+w
 sr.devops       r+w+x
 architect       r+w+x+d
 
-humans: we are creating roles for humans
-no-humans: we are craeting roles for non-humans(ex: ec2)
+humans: we are creating roles for humans.
+non-humans: we are craeting roles for non-humans (Ex: EC2).
 
 
 - login into bastion host clone the repo "roboshop-infra-dev" repo and cd to roboshop-infra-dev there install terraform 
@@ -27,10 +27,10 @@ Therefore, we need to increase the disk size and then extend the volume to ensur
 
 
 ## user_data:
-- once the system provisoned or instance is launched, aws will execute the commands inside the user_data script.
-- if user_data is failed, terfform will not aware(still terraform suceess becoz terraform is responsible is only create the infra)
-- since AWS runs user_data we cant get immediate log
-- useful for simple intallation
+- Once the system provisoned or instance is launched, aws will execute the commands inside the user_data script.
+- If user_data is failed, terfform will not aware(still terraform suceess becoz terraform is responsible is only create the infra)
+- Since AWS runs user_data we cant get immediate log
+- Useful for simple intallation
 
 ## provisioner:
 - It is terrrfaorm resource.
