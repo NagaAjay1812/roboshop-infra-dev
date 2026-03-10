@@ -1,9 +1,9 @@
 #!/bin/bash
-
+component=$1 #to recieve the component we are giving like this
 dnf install ansible -y
 
 cd /home/ec2-user
 git clone https://github.com/NagaAjay1812/ansible-roboshop-roles-tf.git
 
 cd ansible-roboshop-roles-tf
-ansible-playbook -e component=mongodb roboshop.yaml
+ansible-playbook -e component=$component roboshop.yaml
