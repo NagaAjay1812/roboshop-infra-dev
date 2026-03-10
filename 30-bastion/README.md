@@ -38,3 +38,5 @@ Therefore, we need to increase the disk size and then extend the volume to ensur
 - we can get immediate log on console what is going on.
 
 Remember: for simple things we use user_data scrip but for complex things we use remote_exec(provisioner)
+
+user_data logs will be avaialble on /var/log/cloud-init-output.log
