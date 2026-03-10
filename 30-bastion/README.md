@@ -18,3 +18,21 @@ no-humans: we are craeting roles for non-humans(ex: ec2)
 
 
 - login into bastion host clone the repo "roboshop-infra-dev" repo and cd to roboshop-infra-dev there install terraform 
+- We need to increase the storage size from 20 GB to 50 GB because the Terraform provider is installed in /home/ec2-user. However, we are currently allocating only 1.1 GB for the home partition, which is not sufficient.
+
+Additionally, we need to create four databases from the bastion host, and each database requires approximately 830 MB of storage. In total, this requires around 3.5 GB of space.
+Therefore, we need to increase the disk size and then extend the volume to ensure there is enough storage available.
+
+- once the bastion is created then 'bastion.sh' will execute immediaeltly becoz we added this line "user_data = file(bastion.sh)"
+
+
+## user_data:
+- once the system provisoned or instance is launched, aws will execute the commands inside the user_data script.
+- if user_data is failed, terfform will not aware(still terraform suceess becoz terraform is responsible is only create the infra)
+- since AWS runs user_data we cant get immediate log
+- useful for simple intallation
+
+## provisioner:
+- It is terrrfaorm resource.
+- remote_exec is fialed terraform is also failed.
+- we can get immediate log on console what is going on.

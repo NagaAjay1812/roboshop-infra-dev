@@ -1,13 +1,20 @@
 resource "aws_instance" "bastion" {
-  ami                  = local.ami_id # we paramatrized
-  instance_type        = var.instance_type
-  subnet_id            = local.public_subnet_ids
-  iam_instance_profile = aws_iam_instance_profile.bastion.name
+  ami           = local.ami_id # we paramatrized
+  instance_type = var.instance_type
+  subnet_id     = local.public_subnet_ids
+
   # Reference the security group ID here
   vpc_security_group_ids = [local.bastion_sg_id]
+  iam_instance_profile   = aws_iam_instance_profile.bastion.name
+  user_data              = file(bastion.sh)
 
-  # Optional: Add tags to the instance for identification
-  tags = local.bastion_final_tags
+  root_block_device {
+    volume_size = 50 # Increase the storage size from 20gb to 50gb
+    volume_type = "gp3"
+
+    # Optional: Add tags to the instance for identification
+    tags = local.bastion_final_tags
+  }
 }
 
 # 1. created a role
