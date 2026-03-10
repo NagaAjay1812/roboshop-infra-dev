@@ -34,3 +34,41 @@ resource "terraform_data" "bootstrap" {
     ]
   }
 }
+
+resource "aws_instance" "redis" {
+  ami           = local.ami_id # we paramatrized
+  instance_type = var.instance_type
+  subnet_id     = local.database_subnet_ids
+
+  # Reference the security group ID here
+  vpc_security_group_ids = [local.redis_sg_id]
+
+  # Optional: Add tags to the instance for identification
+  tags = local.redis_final_tags
+}
+
+resource "terraform_data" "bootstrap" {
+  triggers_replace = [
+    aws_instance.redis.id
+
+  ]
+  connection {
+    type     = "ssh"
+    user     = "ec2-user" # or 'ec2-user', etc.
+    password = "DevOps321"
+    host     = aws_instance.redis.private_ip
+  }
+
+  provisioner "file" {
+    source      = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh" # we are copying the script in mongodb server
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/bootstrap.sh",     # giving execute access to that script
+      "sudo sh /tmp/bootstrap.sh redis" # now we are executing the script and we are passing mongobd component
+    ]
+  }
+}
+

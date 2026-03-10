@@ -17,6 +17,9 @@ variable "instance_type" {
 variable "mongodb_tags" {
   default = {}
 }
+variable "redis_tags" {
+  default = {}
+}
 
 variable "zone_id" {
   default = "Z07326442Z8C3IRLJ3030"

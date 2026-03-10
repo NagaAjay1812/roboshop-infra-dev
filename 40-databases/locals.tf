@@ -15,6 +15,13 @@ locals {
     },
     var.mongodb_tags
   )
+  redis_final_tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project}-${var.environment}-redis"
+    },
+    var.redis_tags
+  )
   #public subnet in 1a availibility zone
   database_subnet_ids = split(",", data.aws_ssm_parameter.database_subnet_ids.value)[0]
 }
