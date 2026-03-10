@@ -20,6 +20,7 @@ resource "terraform_data" "bootstrap_mongodb" {
     user     = "ec2-user" # or 'ec2-user', etc.
     password = "DevOps321"
     host     = aws_instance.mongodb.private_ip
+    timeout  = "5m"
   }
 
   provisioner "file" {
@@ -29,6 +30,7 @@ resource "terraform_data" "bootstrap_mongodb" {
 
   provisioner "remote-exec" {
     inline = [
+      "sleep 60",
       "chmod +x /tmp/bootstrap.sh",       # giving execute access to that script
       "sudo sh /tmp/bootstrap.sh mongodb" # now we are executing the script and we are passing mongobd component
     ]
@@ -57,6 +59,7 @@ resource "terraform_data" "bootstrap_redis" {
     user     = "ec2-user" # or 'ec2-user', etc.
     password = "DevOps321"
     host     = aws_instance.redis.private_ip
+    timeout  = "5m"
   }
 
   provisioner "file" {
@@ -66,9 +69,12 @@ resource "terraform_data" "bootstrap_redis" {
 
   provisioner "remote-exec" {
     inline = [
+      "sleep 60",
       "chmod +x /tmp/bootstrap.sh",     # giving execute access to that script
-      "sudo sh /tmp/bootstrap.sh redis" # now we are executing the script and we are passing mongobd component
+      "sudo sh /tmp/bootstrap.sh redis" # now we are executing the script and we are passing redis component
     ]
   }
 }
+
+
 

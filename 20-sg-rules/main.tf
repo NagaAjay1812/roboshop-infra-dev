@@ -76,3 +76,15 @@ resource "aws_security_group_rule" "redis_cart" {
   # target traffic
   security_group_id = local.redis_sg_id
 }
+
+# mysql
+resource "aws_security_group_rule" "bastion_mysql" {
+  type      = "ingress"
+  from_port = 22
+  to_port   = 22
+  protocol  = "tcp"
+  # where traffic come from(source)
+  source_security_group_id = local.bastion_sg_id
+  # target traffic
+  security_group_id = local.mysql_sg_id
+}
