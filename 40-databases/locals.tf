@@ -1,7 +1,9 @@
 locals {
-  ami_id        = var.ami_id
-  mongodb_sg_id = data.aws_ssm_parameter.mongodb_sg_id.value
-  redis_sg_id   = data.aws_ssm_parameter.redis_sg_id.value
+  ami_id         = var.ami_id
+  mongodb_sg_id  = data.aws_ssm_parameter.mongodb_sg_id.value
+  redis_sg_id    = data.aws_ssm_parameter.redis_sg_id.value
+  mysql_sg_id    = data.aws_ssm_parameter.mysql_sg_id.value
+  rabbitmq_sg_id = data.aws_ssm_parameter.rabbitmq_sg_id.value
 
   common_tags = {
     Name        = var.project
@@ -21,6 +23,21 @@ locals {
       Name = "${var.project}-${var.environment}-redis"
     },
     var.redis_tags
+  )
+
+  mysql_final_tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project}-${var.environment}-mysql"
+    },
+    var.mysql_tags
+  )
+  rabbitmq_final_tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project}-${var.environment}-rabbitmq"
+    },
+    var.rabbitmq_tags
   )
   #public subnet in 1a availibility zone
   database_subnet_ids = split(",", data.aws_ssm_parameter.database_subnet_ids.value)[0]

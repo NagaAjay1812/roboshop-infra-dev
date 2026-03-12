@@ -20,7 +20,12 @@ variable "mongodb_tags" {
 variable "redis_tags" {
   default = {}
 }
-
+variable "mysql_tags" {
+  default = {}
+}
+variable "rabbitmq_tags" {
+  default = {}
+}
 variable "zone_id" {
   default = "Z07326442Z8C3IRLJ3030"
 }
