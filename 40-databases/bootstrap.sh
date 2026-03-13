@@ -2,8 +2,15 @@
 
 component=$1
 
-dnf install ansible -y
-cd /home/ec2-user
-git clone https://github.com/NagaAjay1812/ansible-roboshop-roles-tf.git
-cd ansible-roboshop-roles-tf
-ansible-playbook -e component=$component roboshop.yaml
+dnf install -y ansible python3-pip git
+python3 -m pip install boto3 botocore PyMySQL
+
+cd /home/ec2-user || exit 1
+
+if [ ! -d ansible-roboshop-roles-tf ]; then
+  git clone https://github.com/NagaAjay1812/ansible-roboshop-roles-tf.git
+fi
+
+cd ansible-roboshop-roles-tf || exit 1
+
+ansible-playbook -e "component=${component}" roboshop.yaml
