@@ -89,6 +89,18 @@ resource "aws_security_group_rule" "bastion_mysql" {
   security_group_id = local.mysql_sg_id
 }
 
+# bastion_rabbitmq
+resource "aws_security_group_rule" "bastion_rabbitmq" {
+  type      = "ingress"
+  from_port = 22
+  to_port   = 22
+  protocol  = "tcp"
+  # where traffic come from(source)
+  source_security_group_id = local.bastion_sg_id
+  # target traffic
+  security_group_id = local.rabbitmq_sg_id
+}
+
 # backend-alb
 resource "aws_security_group_rule" "bastion_backend_alb" {
   type      = "ingress"
