@@ -85,7 +85,7 @@ resource "aws_instance" "mysql" {
   vpc_security_group_ids = [local.mysql_sg_id]
 
   # Optional: Add tags to the instance for identification
-  tags = local.redis_final_tags
+  tags = local.mysql_final_tags
 }
 
 resource "terraform_data" "bootstrap_mysql" {
@@ -115,16 +115,16 @@ resource "terraform_data" "bootstrap_mysql" {
   }
 }
 
-resource "aws_instance" "mysql" {
+resource "aws_instance" "rabbitmq" {
   ami           = local.ami_id # we paramatrized
   instance_type = var.instance_type
   subnet_id     = local.database_subnet_ids
 
   # Reference the security group ID here
-  vpc_security_group_ids = [local.mysql_sg_id]
+  vpc_security_group_ids = [local.rabbitmq_sg_id]
 
   # Optional: Add tags to the instance for identification
-  tags = local.redis_final_tags
+  tags = local.rabbitmq_final_tags
 }
 
 resource "terraform_data" "bootstrap_rabbitmq" {
