@@ -89,7 +89,7 @@ resource "aws_security_group_rule" "bastion_mysql" {
   security_group_id = local.mysql_sg_id
 }
 
-# baxkend-alb
+# backend-alb
 resource "aws_security_group_rule" "bastion_backend_alb" {
   type      = "ingress"
   from_port = 80
