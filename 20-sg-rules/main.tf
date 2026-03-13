@@ -100,3 +100,27 @@ resource "aws_security_group_rule" "bastion_backend_alb" {
   # target traffic
   security_group_id = local.backend_alb_sg_id
 }
+
+# basion_backend-alb
+resource "aws_security_group_rule" "bastion_catalogue" {
+  type      = "ingress"
+  from_port = 22
+  to_port   = 22
+  protocol  = "tcp"
+  # where traffic come from(source)
+  source_security_group_id = local.bastion_sg_id
+  # target traffic
+  security_group_id = local.catalogue_sg_id
+}
+
+# catalogue_backend-alb
+resource "aws_security_group_rule" "catalogue_backend_alb" {
+  type      = "ingress"
+  from_port = 8080
+  to_port   = 8080
+  protocol  = "tcp"
+  # where traffic come from(source)
+  source_security_group_id = local.backend_alb_sg_id
+  # target traffic
+  security_group_id = local.catalogue_sg_id
+}
